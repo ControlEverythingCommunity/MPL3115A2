@@ -12,6 +12,7 @@
 
 float cTemp = 0.0, fTemp = 0.0, pressure = 0.0, altitude = 0.0;
 int temp = 0, tHeight = 0;
+long pres = 0;
 void setup() 
 {
     // Set variable
