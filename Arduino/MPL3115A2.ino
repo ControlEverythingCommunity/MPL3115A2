@@ -113,7 +113,7 @@ void loop()
 
 
   // Convert the data to 20-bits
-  int pres = (((long)data[1] * (long)65536) + (data[2] * 256) + (data[3] & 0xF0)) / 16;
+  long pres = (((long)data[1] * (long)65536) + (data[2] * 256) + (data[3] & 0xF0)) / 16;
   float pressure = (pres / 4.0) / 1000.0;
 
   // Output data to serial monitor
