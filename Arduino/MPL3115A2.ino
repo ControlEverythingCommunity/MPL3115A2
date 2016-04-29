@@ -119,16 +119,16 @@ void loop()
   // Output data to serial monitor
   Serial.print("Altitude : ");
   Serial.print(altitude);
-  Serial.print(" m");
+  Serial.println(" m");
   Serial.print("Pressure : ");
   Serial.print(pressure);
-  Serial.print(" kPa");
+  Serial.println(" kPa");
   Serial.print("Temperature in Celsius : ");
   Serial.print(cTemp);
-  Serial.print(" C");
+  Serial.println(" C");
   Serial.print("Temperature in Fahrenheit : ");
   Serial.print(fTemp);
-  Serial.print(" F");
+  Serial.println(" F");
   delay(500);
 }
 
