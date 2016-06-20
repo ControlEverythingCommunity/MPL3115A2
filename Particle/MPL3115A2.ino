@@ -10,7 +10,7 @@
 // MPL3115A2 I2C address is 0x60(96)
 #define Addr 0x60
 
-float cTemp = 0.0, fTemp = 0.0, pressure = 0.0, altitude = 0.0;
+double cTemp = 0.0, fTemp = 0.0, pressure = 0.0, altitude = 0.0;
 int temp = 0, tHeight = 0;
 long pres = 0;
 void setup() 
@@ -127,8 +127,11 @@ void loop()
 
     // Output data to dashboard
     Particle.publish("Altitude :", String(altitude));
+    delay(1000);
     Particle.publish("Pressure :", String(pressure));
+    delay(1000);
     Particle.publish("Temperature in Celsius :", String(cTemp));
+    delay(1000);
     Particle.publish("Temperature in Fahrenheit :", String(fTemp));
     delay(1000);
 }
