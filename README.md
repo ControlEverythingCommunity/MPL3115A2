@@ -64,6 +64,10 @@ https://dashboard.particle.io/user/logs
 
 ## C
 
+Setup your BeagleBone Black according to steps provided at:
+
+https://beagleboard.org/getting-started
+
 Download (or git pull) the code in Beaglebone Black.
 
 Compile the c program.
