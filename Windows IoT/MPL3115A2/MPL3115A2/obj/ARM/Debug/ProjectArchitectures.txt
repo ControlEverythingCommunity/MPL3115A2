@@ -1,0 +1,1 @@
+c:\users\yadi\documents\visual studio 2015\Projects\MPL3115A2\MPL3115A2\MPL3115A2.csproj;arm
