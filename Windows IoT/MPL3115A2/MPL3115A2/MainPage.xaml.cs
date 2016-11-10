@@ -11,7 +11,7 @@ namespace MPL3115A2
     struct ALPRTEMP
 	{
 		public double A;
-        public double P;
+        	public double P;
 		public double C;
 		public double F;
 	};	/// <summary>
@@ -21,14 +21,13 @@ namespace MPL3115A2
 	public sealed partial class MainPage : Page
 	{
 		// MPL3115A2 registers
-		private const byte ALPRTEMP_I2C_ADDR = 0x60;			// I2C address of the MPL3115A2
-		private const byte ALPRTEMP_REG_STATUS = 0x00;			// Status Register
-		private const byte ALPRTEMP_REG_CONF = 0x13;			// Configuration register
-		private const byte ALPRTEMP_REG_CNTR1 = 0x26;			// Control register 1
+		private const byte ALPRTEMP_I2C_ADDR = 0x60;		// I2C address of the MPL3115A2
+		private const byte ALPRTEMP_REG_STATUS = 0x00;		// Status Register
+		private const byte ALPRTEMP_REG_CONF = 0x13;		// Configuration register
+		private const byte ALPRTEMP_REG_CNTR1 = 0x26;		// Control register 1
 
 		private I2cDevice I2CAlprtemp;
-        private Timer periodicTimer;
-
+        	private Timer periodicTimer;
 
 		public MainPage()
 		{
@@ -44,7 +43,7 @@ namespace MPL3115A2
 		private async void InitI2CAlprtemp()
 		{
 			// Precision Altimeter
-			string aqs = I2cDevice.GetDeviceSelector();				// Get a selector string that will return all I2C controllers on the system
+			string aqs = I2cDevice.GetDeviceSelector();		// Get a selector string that will return all I2C controllers on the system
 			var dis = await DeviceInformation.FindAllAsync(aqs);	// Find the I2C bus controller device with our selector string
 			if (dis.Count == 0)
 			{
@@ -65,12 +64,11 @@ namespace MPL3115A2
 				return;
 			}
 
-				/*
-					Initialize the Precision Altimeter, MPL3115A2:
-					For this device, we create 2-byte write buffers:
-					The first byte is the register address we want to write to.
-					The second byte is the contents that we want to write to the register.
-				*/
+			/*
+				Initialize the Precision Altimeter, MPL3115A2:
+				For this device, we create 2-byte write buffers:
+				The first byte is the register address we want to write to.					The second byte is the contents that we want to write to the register.
+			*/
 
 			byte[] WriteBuf_Conf = new byte[] { ALPRTEMP_REG_CONF, 0x07 };		// 0x07 sets data ready event enabled for altitude, pressure, temperature
 			byte[] WriteBuf_Cntr1 = new byte[] { ALPRTEMP_REG_CNTR1, 0x39 };	// 0x39 sets barometer Mode, OSR = 128, Active Mode
@@ -110,16 +108,16 @@ namespace MPL3115A2
 				ALPRTEMP Alprtemp = ReadI2CAlprtemp();
 				addressText = "I2C Address of the Precision Altimeter MPL3115A2: 0x60";
 				pText = String.Format("Pressure: {0:F2} kPa", Alprtemp.P);
-                aText = String.Format("Altitude: {0:F2} m", Alprtemp.A);
-                cText = String.Format("Temperature in Celsius: {0:F2} °C", Alprtemp.C);
+                		aText = String.Format("Altitude: {0:F2} m", Alprtemp.A);
+                		cText = String.Format("Temperature in Celsius: {0:F2} °C", Alprtemp.C);
 				fText = String.Format("Temperature in Fahrenheit: {0:F2} °F", Alprtemp.F);
 				statusText = "Status: Running";
 			}
 			catch (Exception ex)
 			{
 				pText = "Pressure: Error";
-                aText = "Altitude: Error";
-                cText = "Temperature in Celsius: Error";
+                		aText = "Altitude: Error";
+                		cText = "Temperature in Celsius: Error";
 				fText = "Temperature in Fahrenheit: Error";
 				statusText = "Failed to read from Altimeter, Barometer and Temperature Sensor: " + ex.Message;
 			}
@@ -128,8 +126,8 @@ namespace MPL3115A2
 			var task = this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
 			{
 				Text_Pressure.Text = pText;
-                Text_Altitude.Text = aText;
-                Text_Temperature_in_Celsius.Text = cText;
+                		Text_Altitude.Text = aText;
+                		Text_Temperature_in_Celsius.Text = cText;
 				Text_Temperature_in_Fahrenheit.Text = fText;
 				Text_Status.Text = statusText;
 			});
@@ -139,7 +137,7 @@ namespace MPL3115A2
 		{	
 			// Precision Altimeter
 			byte[] RegAddrBuf = new byte[] { ALPRTEMP_REG_STATUS };	// Read data from the Status address
-			byte[] ReadBuf = new byte[6];							// We read 6 bytes sequentially to get all 2 two-byte pressure/altitude and temperature registers in one read
+			byte[] ReadBuf = new byte[6];				// We read 6 bytes sequentially to get all 2 two-byte pressure/altitude and temperature registers in one read
 
 			/*
 				Read from the Precision Altimeter 
