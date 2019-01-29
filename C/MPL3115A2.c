@@ -82,5 +82,5 @@ void main()
 	printf("Temperature in Celsius : %.2f C \n", cTemp);
 	printf("Temperature in Fahrenheit : %.2f F \n", fTemp);
 	
-	exit(0)
+	exit(0);
 }
